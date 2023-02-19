@@ -1,24 +1,27 @@
 import './style.css'
 import * as Tone from 'tone'
 let counter = 0
-const reverb = new Tone.Reverb(6)
+const reverb = new Tone.Reverb(5)
 const chorus = new Tone.Chorus(0.03, 2.5, 0.5).start()
 const phaser = new Tone.Phaser({
-	frequency: 0.05,
-	octaves: 3,
-	baseFrequency: "D3"
+   frequency: 0.05,
+   octaves: 3,
+   baseFrequency: "D3"
 })
+const lfo = new Tone.LFO(0.04, 0.01, 0.03).connect(phaser.frequency)
 const synth = new Tone.PolySynth(Tone.Synth).chain(chorus, phaser, reverb, Tone.Destination)
-synth.set({ oscillator: {
-   partialCount: 0,
-   type: 'triangle16'
-},
-envelope: {
-   attack: 2,
-   decay: 2,
-   sustain: 0.5,
-   release: 2,
-} })
+synth.set({
+   oscillator: {
+      partialCount: 0,
+      type: 'triangle16'
+   },
+   envelope: {
+      attack: 2,
+      decay: 2,
+      sustain: 0.5,
+      release: 2,
+   }
+})
 const synths = [
    {
       start: 1,
@@ -77,3 +80,8 @@ function incrementSequence() {
 }
 document.querySelector("#startbutton").addEventListener('click', startTone)
 document.querySelector('#incrementbutton').addEventListener('click', incrementSequence);
+document.addEventListener("keydown", (e) => {
+   if (e.key === "PageDown") {
+      incrementSequence()
+   }
+})
