@@ -84,4 +84,9 @@ document.addEventListener("keydown", (e) => {
    if (e.key === "PageDown") {
       incrementSequence()
    }
+   if (e.key === "Escape") {
+      synths.forEach(s => {
+         s.synth.triggerRelease(s.pitch)
+      })
+   }
 })
