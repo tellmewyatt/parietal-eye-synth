@@ -2,6 +2,8 @@
 Simple synth patch using Tone.js for my piece Parietal Eye, performed by Earplay. You can see the synth in action here: https://parietal-eye.wyattcannon.com/
 
 ## Usage
+### npm install
+Install the dependencies. This app uses Vite and ToneJS
 ### npm run dev
 Starts the development server. In your browser, go to the link listed upon start up to view the score
 ### npm run build
